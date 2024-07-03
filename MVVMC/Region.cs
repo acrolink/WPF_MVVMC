@@ -52,7 +52,7 @@ namespace MVVMC
                 throw new NullReferenceException($"A loaded Region doesn't have 'ControllerID' set to anything");
             }
 
-            _navigationService.CreateAndAddController(ControllerID, HistoryMode);
+            _navigationService.CreateAndAddController(ControllerID, ControllerDATA, HistoryMode);
             _navigationService.AddRegion(this);
             _navigationService.GetController(ControllerID).NavigateToInitial();
         }
@@ -62,8 +62,22 @@ namespace MVVMC
             get { return (string)GetValue(ControllerIDProperty); }
             set { SetValue(ControllerIDProperty, value); }
         }
+
+
+        public object ControllerDATA
+        {
+            get { return (object)GetValue(ControllerDATAProperty); }
+            set { SetValue(ControllerDATAProperty, value); }
+        }
+
+
         public static readonly DependencyProperty ControllerIDProperty =
             DependencyProperty.Register("ControllerID", typeof(string), typeof(Region), new PropertyMetadata(null));
+
+
+        public static readonly DependencyProperty ControllerDATAProperty =
+        DependencyProperty.Register("ControllerDATA", typeof(object), typeof(Region), new PropertyMetadata(null));
+
 
         public HistoryMode? HistoryMode
         {

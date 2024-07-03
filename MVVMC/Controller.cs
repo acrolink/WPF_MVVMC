@@ -51,6 +51,8 @@ namespace MVVMC
 
         public string ID { get; internal set; }
 
+        public object DATA { get; internal set; }
+
         public HistoryMode HistoryMode { get; set; } = HistoryMode.DiscardParameterInstance;
 
         protected List<HistoryItem> History { get; private set; } = new List<HistoryItem>();

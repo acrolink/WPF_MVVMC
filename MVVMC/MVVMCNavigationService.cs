@@ -120,12 +120,13 @@ namespace MVVMC
             _regions.Remove(navigationArea);
         }
 
-        internal void CreateAndAddController(string controllerID, HistoryMode? historyMode)
+        internal void CreateAndAddController(string controllerID, object controllerDATA, HistoryMode? historyMode)
         {
             Type type = GetControllerTypeById(controllerID);
             var instance = Activator.CreateInstance(type);
             var controller = instance as Controller;
             controller.ID = controllerID;
+            controller.DATA = controllerDATA;
             controller.SetNavigationService(this);
             controller.NavigationExecutor = this;
             if (historyMode != null)
